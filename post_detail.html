@@ -1,0 +1,71 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="post">
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text|linebreaks }}</p>
+    </div>
+
+       <form action="{% url 'upload_document' pk=post.pk %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+            <p>
+                {{ form.docfile.errors }}
+                {{ form.docfile }}
+            </p>
+            <p><input type="submit" value="Upload image"/></p>
+       </form>
+
+            <ul>
+                {% for document in post.documents.all %}
+                    <li><a href="{{ document.docfile.url }}"><img src="http://127.0.0.1:8000{{ document.docfile.url }}"style="width:300px">{{ document.docfile.name }}</a></li>
+                {% endfor %}
+            </ul>
+
+       <form action="{% url 'myview' pk=post.pk %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ form.pdffile.label_tag }} {{ form.pdffile.help_text }}</p>
+            <p>
+                {{ form.pdffile.errors }}
+                {{ form.pdffile }}
+            </p>
+            <p><input type="submit" value="Save pdf"/></p>
+       </form>
+
+            <ul>
+                {% for item in post.mylists.all %}
+
+                {% endfor %}
+            </ul>
+
+<hr>
+<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+{% for comment in post.comments.all %}
+    {% if user.is_authenticated or comment.approved_comment %}
+    <div class="comment">
+        <div class="date">
+            {{ comment.created_date }}
+            {% if not comment.approved_comment %}
+                <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+            {% endif %}
+        </div>
+        <strong>{{ comment.author }}</strong>
+        <p>{{ comment.text|linebreaks }}</p>
+    </div>
+    {% endif %}
+{% empty %}
+    <p>No comments here yet :(</p>
+{% endfor %}
+
+{% endblock %}
+
+
+
