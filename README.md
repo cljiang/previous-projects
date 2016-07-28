@@ -9,3 +9,7 @@ Here I list some of the project programming scripts I created lately.
 3. get_rooms.py, analyze_rooms.py, and plot_rooms.py --- scrape Airbnb listing from website, clean up data, explore data, and apply linear regression and random forest to gain business insights.
 
 4. case_study_LinearRegression_NeuralNetwork.pdf --- two examples of the machine learning methods I implemented recently.
+
+5. Calculate_confidence_interval_using_t_test.pdf --- documentation of linear trend statistics.
+
+6. linear_trend_statistics.m --- matlab script to calculate linear trends and its confidence interval.
