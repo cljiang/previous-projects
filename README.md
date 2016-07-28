@@ -6,7 +6,7 @@ More to come, stay tuned.
 
 1. duration.py --- to predict route duration using starting and ending locations. In this script, I applied linear regression, decision treee, random forest, and neural network algorithms to train the model and evaluate the model performance in the test data set.
 
-2. models.py, views.py, urls.py, forms.py, post_detail.html --- designed an online journal website using Django framworks. You can post your journal and upload your images, and your family and friends can comment on your journal. The best part is that you can save all these (journal,comment,images) to a pdf file and present it to your friends, print it out, or save it as a journal book.
+2. models.py, views.py, urls.py, forms.py, post_detail.html --- designed an online journal website using Django python framework. You can post your journal and upload your images, and your family and friends can comment on your journal. The best part is that you can save all these (journal,comment,images) to a pdf file and present it to your friends, print it out, or save it as a journal book.
 
 3. get_rooms.py, analyze_rooms.py, and plot_rooms.py --- scrape Airbnb listings from website, clean up data, explore data, and apply linear regression and random forest to gain business insights.
 
